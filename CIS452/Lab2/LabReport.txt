@@ -15,10 +15,10 @@ Brendan Cronan
 	clear order.  As a result, this program does not run as intended and produces unreliable output.  		
 6.	child = wait($status);
 7. 	The child prints first because the parent waits for it to complete before printing the pid and exit status.
-8. 	The two values printed by the parent function are the pid of the child process and the exit status.  This exit status is just an integer but it has
-	assigned meanings for certain values.
-9.	That line, to the best of my understanding would only execute on the occassion that execvp() returns a value.  In this case, since it only returns upon
-	an error, and then exits, the "after the exec" line should not ever execute.
+8. 	The two values printed by the parent function are the pid of the child process and the exit status.  This exit status is just an integer but it has assigned meanings for certain values.
+9.	That line will likely never execute because if execvp() fails, the error is caught and the program exits.  
+	If the execvp statement executes properly however, the code for that child process changes and the rest of that block will not execute anyways.
+
 10.	The second argument passed to the execvp function is used to pass the arguments provided from the command line.
 	This is a vector of strings ending in a NULL string that details the command and any args or flags associated with it.
  		
