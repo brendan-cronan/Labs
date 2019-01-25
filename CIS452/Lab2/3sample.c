@@ -9,8 +9,8 @@ int main()
 
     // use these variables
 
-    long pid;
-    long child;
+    pid_t pid;
+    pid_t child;
     int status;
 
     if ((pid = fork()) < 0) {
@@ -22,8 +22,8 @@ int main()
 	exit(0);
     }
     else {
-	child = pid;
-	status = wait(child);
+	//child = pid;
+	child = wait(&status);
         printf("Child PID %ld terminated with return status %d\n", (long) child, status);
     }
     return 0;
