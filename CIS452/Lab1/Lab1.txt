@@ -1,0 +1,284 @@
+CIS 452 Lab 1
+Two Sections of man page
+Synopsis
+Describes the use and placement of flags for this command as well as the conventional order of the parameters.
+Options
+Describes all of the optional flags that can be applied to this command and what their function is.
+Write vs. Write()
+Write
+Composes a message to another user.
+Write()
+Writes data contained in the buffer to a file
+What is Seek_Set?
+“If whence is SEEK_SET, the offset is set to offset bytes.”
+contents of a directory in long mode
+Ls -la
+Directory only read/write by me?
+Chmod *filename* 700
+600 for just read write.  700 also adds execution permissions.
+See Appendix.
+Valgrind Memory Leak
+Changed both chars to char*s to get it to run with no errors
+Added a free statement for data2 after we were done using it to fix memory leak. 
+This memory leak was caused by continuously allocating memory and then forgetting to free said memory when done with it.  This would eventually result in the failure of the program.
+This was only a fault for data2
+For data1, the exit condition of typing quit causes a memory leak because data1 is not freed before exiting the loop.  This was simply fixed by adding another free statement inside the if statement before the break statement.
+See Appendix for code
+Strace tells me that write was called 3 times with only one input of my username.
+Printf is the subroutine that calls the system call write() to be called.  This is used 3 times and each time, the write() call is executed.  
+Code in Appendix.
+
+
+
+
+Appendix:
+SCRIPT FOR #6
+[cronanb@eos10 Transfer]$ script
+Script started, file is typescript
+[cronanb@eos10 Transfer]$ gcc -Wall -lm -g -o output.out
+/usr/bin/ld: /usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../lib/Scrt1.o: in function `_start':
+(.text+0x24): undefined reference to `main'
+collect2: error: ld returned 1 exit status
+[cronanb@eos10 Transfer]$ gcc sample.c -Wall -lm -g -o output.out
+[cronanb@eos10 Transfer]$ echo oops:)
+bash: syntax error near unexpected token `)'
+[cronanb@eos10 Transfer]$ ls
+output.out  sample.c  typescript
+[cronanb@eos10 Transfer]$ ./output.out
+Hello, world.
+You are the 268435456.000000 person to write this program!
+[cronanb@eos10 Transfer]$ gdb a.out
+GNU gdb (GDB) 8.2
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-pc-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+a.out: No such file or directory.
+(gdb) Quit
+(gdb) Quit
+(gdb) Quit
+Undefined command: "Quit".  Try "help".
+(gdb) exit
+Undefined command: "exit".  Try "help".
+(gdb) Quit
+(gdb) q
+[cronanb@eos10 Transfer]$ gdb output.out
+GNU gdb (GDB) 8.2
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-pc-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from output.out...done.
+(gdb) b main
+Breakpoint 1 at 0x1151: file sample.c, line 6.
+(gdb) run
+Starting program: /home/cronanb/Documents/Transfer/output.out
+
+Breakpoint 1, main () at sample.c:6
+6           double num = 0.0;
+(gdb) w num
+Ambiguous command "w num": watch, wh, whatis, where, while, while-stepping, winheight, ws.
+(gdb) watch num
+Hardware watchpoint 2: num
+(gdb) n
+7              printf ("Hello, world.\n");
+(gdb) n
+Hello, world.
+8                 num = pow(2, 28);
+(gdb) n
+
+Hardware watchpoint 2: num
+
+Old value = 0
+New value = 268435456
+main () at sample.c:9
+9                printf ("You are the %f person to write this program!\n", num);
+(gdb) q
+A debugging session is active.
+
+    Inferior 1 [process 8501] will be killed.
+
+Quit anyway? (y or n) y
+[cronanb@eos10 Transfer]$ exit
+exit
+Script done, file is typescript
+[cronanb@eos10 Transfer]$ ls
+output.out  sample.c  typescript
+[cronanb@eos10 Transfer]$ cat typescript
+Script started on 2019-01-10 08:53:29-05:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="179" LINES="43"]
+[cronanb@eos10 Transfer]$ gcc -Wall -lm -g -o output.out
+/usr/bin/ld: /usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../lib/Scrt1.o: in function `_start':
+(.text+0x24): undefined reference to `main'
+collect2: error: ld returned 1 exit status
+[cronanb@eos10 Transfer]$ gcc sample.c -Wall -lm -g -o output.out
+[cronanb@eos10 Transfer]$ echo oops:)
+bash: syntax error near unexpected token `)'
+[cronanb@eos10 Transfer]$ ls
+output.out  sample.c  typescript
+[cronanb@eos10 Transfer]$ ./output.out
+Hello, world.
+You are the 268435456.000000 person to write this program!
+[cronanb@eos10 Transfer]$ gdb a.out
+GNU gdb (GDB) 8.2
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-pc-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+a.out: No such file or directory.
+(gdb) Quit
+(gdb) Quit
+(gdb) Quit
+Undefined command: "Quit".  Try "help".
+(gdb) exit
+Undefined command: "exit".  Try "help".
+(gdb) Quit
+(gdb) q
+[cronanb@eos10 Transfer]$ gdb output.out
+GNU gdb (GDB) 8.2
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-pc-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+Type "apropos word" to search for commands related to "word"...^M
+Reading symbols from output.out...done.^M
+(gdb) b main^M
+Breakpoint 1 at 0x1151: file sample.c, line 6.^M
+(gdb) run^M
+Starting program: /home/cronanb/Documents/Transfer/output.out ^M
+^M
+Breakpoint 1, main () at sample.c:6^M
+6                  double num = 0.0; ^M
+(gdb) w num^M
+Ambiguous command "w num": watch, wh, whatis, where, while, while-stepping, winheight, ws.^M
+(gdb) watch num^M
+Hardware watchpoint 2: num^M
+(gdb) n^M
+7                     printf ("Hello, world.\n"); ^M
+(gdb) n^M
+Hello, world.^M
+8                        num = pow(2, 28); ^M
+(gdb) n^M
+^M
+Hardware watchpoint 2: num^M
+^M
+Old value = 0^M
+New value = 268435456^M
+main () at sample.c:9^M
+9                           printf ("You are the %f person to write this program!\n", num); ^M
+(gdb) q^M
+A debugging session is active.^M
+^M
+        Inferior 1 [process 8501] will be killed.^M
+^M
+Quit anyway? (y or n) y^M
+^[]0;cronanb@eos10:~/Documents/Transfer^G[cronanb@eos10 Transfer]$ exit^M
+exit^M
+
+Script done on 2019-01-10 08:58:21-05:00 [COMMAND_EXIT_CODE="0"]
+
+
+
+
+
+
+
+CODE FOR #7
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define SIZE 16
+
+int main()
+{
+    char* data1;
+    char* data2;
+    int i;
+
+    do {
+       data1 = malloc (SIZE);
+       printf ("Please input your eos username: ");
+       scanf ("%s", data1);
+       if (!strcmp (data1, "quit"))
+          free(data1);
+          break;
+       data2 = malloc (SIZE);
+       for (i=0; i<SIZE; i++)
+          data2[i] = data1[i];
+       free (data1);
+       printf ("data2 :%s:\n", data2);
+       free(data2);
+    } while (1);
+    return 0;
+}
+
+
+CODE FOR #10
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <termios.h>
+
+int main()
+{
+    struct termios tp, save;
+
+       printf ("Disabling Terminal Echo\n");
+
+       tcgetattr(1, &tp);
+       save = tp;                          /* save state */
+       tp.c_lflag &= ~ECHO;                /* ECHO off */
+       tcsetattr(1,TCSANOW,&tp);
+
+       char* input = malloc (16);
+       printf ("Please Enter Secret Word: \n> ");
+       scanf ("%s", input);
+
+       printf("Your Secret Word Is: %s\n",input);
+
+       printf("Restoring State.\n");
+
+       tcsetattr(1, TCSANOW, &save);
+
+       printf("Please enter visible word:\n> ");
+       scanf("%s", input);
+
+       free (input);
+       return 0;
+}
+
+
