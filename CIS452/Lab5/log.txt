@@ -1,0 +1,35 @@
+Script started on Thu Feb 21 01:35:20 2019
+[?1034hbrendancronanipcs
+IPC status from <running system> as of Thu Feb 21 01:35:25 EST 2019
+T     ID     KEY        MODE       OWNER    GROUP
+Message Queues:
+
+T     ID     KEY        MODE       OWNER    GROUP
+Shared Memory:
+m 393217 0x00000000 --rw------- brendancronan    staff
+
+T     ID     KEY        MODE       OWNER    GROUP
+Semaphores:
+s  65536 0x01057669 --ra-ra-ra-     root    wheel
+s  65537 0x61052b8e --ra-ra-ra- brendancronan    staff
+s  65538 0x0105763a --ra-ra-ra- brendancronan    staff
+
+brendancronanipcs rm [K[K[K[K[Krm - [Km 393217
+brendancronanipcs
+IPC status from <running system> as of Thu Feb 21 01:35:49 EST 2019
+T     ID     KEY        MODE       OWNER    GROUP
+Message Queues:
+
+T     ID     KEY        MODE       OWNER    GROUP
+Shared Memory:
+
+T     ID     KEY        MODE       OWNER    GROUP
+Semaphores:
+s  65536 0x01057669 --ra-ra-ra-     root    wheel
+s  65537 0x61052b8e --ra-ra-ra- brendancronan    staff
+s  65538 0x0105763a --ra-ra-ra- brendancronan    staff
+
+brendancronanexit
+exit
+
+Script done on Thu Feb 21 01:35:58 2019
