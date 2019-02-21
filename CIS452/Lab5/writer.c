@@ -58,10 +58,6 @@ int main ()
    char* input;
    input = malloc(SIZE);
 
-
-   // printf("wrtFlag: %c\t",wrtFlag);
-   // printf("readFlag: %c\n",readFlag);
-
    while(1){
 
      printf("Please Input String to send to Reader...\n  >  ");
@@ -98,16 +94,13 @@ int main ()
      *strPtr++ = '\n';
 
 
-     shmPtr[0] = '1';
-
-
+     shmPtr[0] = '1';//writer is done.
 
    }
 
 
    return 0;
 }
-//char* shmPtr, int shmId
 
 void sigHandler(int sigNum){
   sleep(1);

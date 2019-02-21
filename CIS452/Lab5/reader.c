@@ -70,11 +70,12 @@ int main ()
       //read1Flag == 0 && read2Flag == 0 -- Neither have gone.
       //my flag indicates that I already went.
 
+      //infinite loop if writer is working or if I have already completed.
       while(shmPtr[0]!='1' || myFlag=='1' ){
-        if(shmPtr[2]=='1')
-          myFlag='0';
+        if(shmPtr[2]=='1')//if both I and the other reader have completed...
+          myFlag='0';//set my completion status to 0 and break loop.
         else
-          sleep(1);
+          sleep(1);//else, wait around.
       }
       //at this point, writer has written and the readers have a green light.
 
@@ -98,35 +99,9 @@ int main ()
       }
       else if(shmPtr[1] == '0'){//no reader has yet finished.
         shmPtr[1]='1';// indicate that I have completed.
-        myFlag='1';
-        sleep(2);//wait for 2 seconds.
+        myFlag='1';//keep track of personal completion.
+        sleep(1);//wait for 2 seconds.
       }
-
-
-
-
-
-
-      /*
-
-
-      //set flag to indicate completion.
-      if(shmPtr[0]=='1' ){//other reader is already done.
-        shmPtr[0]='0';//writer is free to over-write the string now.
-        shmPtr[1]='0';//reset flag for readers as well.
-      }
-      else{//other reader is not done.
-        shmPtr[1]='1';//indicate that I am done.
-        sleep(2);//give it time to complete.
-      }
-
-      */
-
-
-
-
-
-
 
    }
 
