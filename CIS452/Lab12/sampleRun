@@ -1,0 +1,125 @@
+Script started on Fri Apr 19 23:34:44 2019
+[?1034hbrendancronancat subdir/junk
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#include <sys/stat.h>
+
+#include <sys/types.h>
+
+#include <errno.h>
+
+int main(int argc, char *argv[])
+
+{
+
+   struct stat statBuf;
+
+   if (argc < 2) {
+
+      printf ("Usage: filename required\n");
+
+      exit(1);
+
+   }
+
+   if (stat (argv[1], &statBuf) < 0) {
+
+      perror ("huh?  there is ");
+
+      exit(1);
+
+   }
+
+   printf ("value is: %u\n", statBuf.st_mode);
+
+   return 0;
+
+}
+brendancronan./myLn.out -h subdir/junk hardjunk
+brendancronan./myLn.out -h subdir/junk hardjunk[K[K[K[K[K[K[K[Ksoftjunk[C[1P[1@s
+brendancronanls
+1Sample.c hardjunk  myLn.c    [1m[32mmyLn.out[39;49m[0m  sampleRun [1m[35msoftjunk[39;49m[0m  [1m[34msubdir[39;49m[0m
+brendancronancat softjunk 
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#include <sys/stat.h>
+
+#include <sys/types.h>
+
+#include <errno.h>
+
+int main(int argc, char *argv[])
+
+{
+
+   struct stat statBuf;
+
+   if (argc < 2) {
+
+      printf ("Usage: filename required\n");
+
+      exit(1);
+
+   }
+
+   if (stat (argv[1], &statBuf) < 0) {
+
+      perror ("huh?  there is ");
+
+      exit(1);
+
+   }
+
+   printf ("value is: %u\n", statBuf.st_mode);
+
+   return 0;
+
+}
+brendancronancat softjunk [K[K[K[K[K[K[K[K[Khardjunk 
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#include <sys/stat.h>
+
+#include <sys/types.h>
+
+#include <errno.h>
+
+int main(int argc, char *argv[])
+
+{
+
+   struct stat statBuf;
+
+   if (argc < 2) {
+
+      printf ("Usage: filename required\n");
+
+      exit(1);
+
+   }
+
+   if (stat (argv[1], &statBuf) < 0) {
+
+      perror ("huh?  there is ");
+
+      exit(1);
+
+   }
+
+   printf ("value is: %u\n", statBuf.st_mode);
+
+   return 0;
+
+}
+brendancronanls
+1Sample.c hardjunk  myLn.c    [1m[32mmyLn.out[39;49m[0m  sampleRun [1m[35msoftjunk[39;49m[0m  [1m[34msubdir[39;49m[0m
+brendancronanexit
+exit
+
+Script done on Fri Apr 19 23:36:07 2019
